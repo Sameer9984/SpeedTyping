@@ -7,29 +7,23 @@ const settingsBtn = document.getElementById('settings-btn');
 const settings = document.getElementById('settings');
 const settingsForm = document.getElementById('settings-form');
 const difficultySelect = document.getElementById('difficulty');
+const confirmSettingsBtn = document.getElementById('confirm-settings');
 
 // List of words for game
 const words = [
-  'sigh',
-  'tense',
-  'airplane',
-  'ball',
-  'pies',
-  'juice',
-  'warlike',
-  'bad',
-  'north',
-  'dependent',
-  'steer',
-  'silver',
-  'highfalutin',
-  'superficial',
-  'quince',
-  'eight',
-  'feeble',
-  'admit',
-  'drag',
-  'loving'
+  'sigh', 'tense', 'airplane', 'ball', 'pies', 'juice', 'warlike', 'bad', 'north', 'dependent',
+  'steer', 'silver', 'highfalutin', 'superficial', 'quince', 'eight', 'feeble', 'admit', 'drag', 'loving',
+  'phenomenon', 'idyllic', 'rhythm', 'programmer', 'keyboard', 'algorithm', 'interface', 'framework', 'responsive', 'optimization',
+  'accessibility', 'sustainability', 'collaboration', 'innovation', 'technology', 'iteration', 'agile', 'scalability', 'resilience', 'cybersecurity',
+  'encryption', 'vulnerability', 'authentication', 'authorization', 'cryptography', 'blockchain', 'decentralized', 'distributed', 'consensus', 'immutable',
+  'paradigm', 'infrastructure', 'deployment', 'continuous', 'integration', 'delivery', 'orchestration', 'microservices', 'serverless', 'containerization',
+  'virtualization', 'cloud', 'compute', 'storage', 'networking', 'analytics', 'visualization', 'insights', 'intelligence', 'machine',
+  'learning', 'neural', 'networks', 'perception', 'cognition', 'robotics', 'autonomous', 'internet', 'connectivity', 'ubiquitous',
+  'wearable', 'ambient', 'internet', 'things', 'sensor', 'actuator', 'embedded', 'systems', 'realtime', 'lowpower',
+  'immersive', 'augmented', 'virtual', 'reality', 'simulation', 'interaction', 'intuitive', 'ergonomic', 'inclusive', 'empathetic',
+  'usability', 'engagement', 'gamification', 'motivation', 'incentive', 'social', 'collaborative', 'crowdsourcing', 'sharing', 'economy',
+  'disruptive', 'innovative', 'entrepreneurial', 'startup', 'venture', 'incubator', 'accelerator', 'investor', 'mentor', 'pitching',
+  'prototyping', 'iteration', 'pivoting', 'growth', 'hacking', 'lean', 'agile', 'scrum', 'kanban', 'waterfall'
 ];
 
 // Init word
@@ -57,9 +51,9 @@ difficultySelect.value =
 text.focus();
 
 // Start counting down
-const timeInterval = setInterval(updateTime, 1000);
+let timeInterval;
 
-// Generate random word from array
+// Generate random word from local list
 function getRandomWord() {
   return words[Math.floor(Math.random() * words.length)];
 }
@@ -91,12 +85,28 @@ function updateTime() {
 // Game over, show end screen
 function gameOver() {
   endgameEl.innerHTML = `
-    <h1>Time ran out</h1>
-    <p>Your final score is ${score}</p>
-    <button onclick="location.reload()">Reload</button>
+    <div class="end-game-content">
+      <h2>Time's Up!</h2>
+      <p>Your final score is ${score}</p>
+      <button id="play-again-btn">Play Again</button>
+    </div>
   `;
 
   endgameEl.style.display = 'flex';
+  document.body.classList.add('blur');
+  settingsBtn.setAttribute('aria-hidden', 'true');
+  settings.setAttribute('aria-hidden', 'true');
+
+  const playAgainBtn = document.getElementById('play-again-btn');
+  playAgainBtn.addEventListener('click', () => {
+    location.reload();
+  });
+}
+
+// Start the game
+function startGame() {
+  timeInterval = setInterval(updateTime, 1000);
+  addWordToDOM();
 }
 
 addWordToDOM();
@@ -105,7 +115,7 @@ addWordToDOM();
 
 // Typing
 text.addEventListener('input', e => {
-  const insertedText = e.target.value;
+  const insertedText = e.target.value.trim();
 
   if (insertedText === randomWord) {
     addWordToDOM();
@@ -127,10 +137,23 @@ text.addEventListener('input', e => {
 });
 
 // Settings btn click
-settingsBtn.addEventListener('click', () => settings.classList.toggle('hide'));
+settingsBtn.addEventListener('click', () => {
+  settings.classList.remove('hide');
+  settings.setAttribute('aria-hidden', 'false');
+});
 
-// Settings select
-settingsForm.addEventListener('change', e => {
-  difficulty = e.target.value;
+// Confirm settings
+confirmSettingsBtn.addEventListener('click', () => {
+  difficulty = difficultySelect.value;
   localStorage.setItem('difficulty', difficulty);
+  settings.classList.add('hide');
+  settings.setAttribute('aria-hidden', 'true');
+  startGame();
+});
+
+// Error handling
+window.addEventListener('error', (event) => {
+  const errorMessage = `An error occurred: ${event.error.message}`;
+  console.error(errorMessage);
+  alert(errorMessage);
 });
