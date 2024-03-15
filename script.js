@@ -51,7 +51,7 @@ difficultySelect.value =
 text.focus();
 
 // Start counting down
-const timeInterval = setInterval(updateTime, 1000);
+let timeInterval;
 
 // Generate random word from local list
 function getRandomWord() {
@@ -85,14 +85,28 @@ function updateTime() {
 // Game over, show end screen
 function gameOver() {
   endgameEl.innerHTML = `
-    <h2 id="end-game-title">Time ran out</h2>
-    <p>Your final score is ${score}</p>
-    <button onclick="location.reload()">Reload</button>
+    <div class="end-game-content">
+      <h2>Time's Up!</h2>
+      <p>Your final score is ${score}</p>
+      <button id="play-again-btn">Play Again</button>
+    </div>
   `;
 
   endgameEl.style.display = 'flex';
+  document.body.classList.add('blur');
   settingsBtn.setAttribute('aria-hidden', 'true');
   settings.setAttribute('aria-hidden', 'true');
+
+  const playAgainBtn = document.getElementById('play-again-btn');
+  playAgainBtn.addEventListener('click', () => {
+    location.reload();
+  });
+}
+
+// Start the game
+function startGame() {
+  timeInterval = setInterval(updateTime, 1000);
+  addWordToDOM();
 }
 
 addWordToDOM();
@@ -134,7 +148,7 @@ confirmSettingsBtn.addEventListener('click', () => {
   localStorage.setItem('difficulty', difficulty);
   settings.classList.add('hide');
   settings.setAttribute('aria-hidden', 'true');
-  addWordToDOM();
+  startGame();
 });
 
 // Error handling
