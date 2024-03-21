@@ -33,7 +33,7 @@ let randomWord;
 let score = 0;
 
 // Init time
-let time = 10;
+let time = 30;
 
 // Set difficulty to value in ls or medium
 let difficulty =
@@ -60,6 +60,7 @@ function getRandomWord() {
 
 // Add word to DOM
 function addWordToDOM() {
+  text.focus();
   randomWord = getRandomWord();
   word.innerHTML = randomWord;
 }
@@ -114,10 +115,26 @@ addWordToDOM();
 // Event listeners
 
 // Typing
-text.addEventListener('input', e => {
-  const insertedText = e.target.value.trim();
+text.addEventListener('keypress', e => {
+  const insertedText = (e.target.value + e.key).trim().toLowerCase();
+  const currentWord = word.innerText.trim().toLowerCase();
 
-  if (insertedText === randomWord) {
+  // Check if the inserted text matches the current word up to the same length
+  if (insertedText === currentWord.substring(0, insertedText.length)) {
+    // If it matches, allow the key to be inserted
+  } else {
+    // Prevent the incorrect letter from being inserted
+    e.preventDefault();
+
+    // Shake the input field
+    e.target.classList.add('shake');
+    setTimeout(() => {
+      e.target.classList.remove('shake');
+    }, 300);
+  }
+
+  // If the entire word is typed correctly
+  if (insertedText === currentWord) {
     addWordToDOM();
     updateScore();
 
@@ -127,14 +144,15 @@ text.addEventListener('input', e => {
     if (difficulty === 'hard') {
       time += 2;
     } else if (difficulty === 'medium') {
-      time += 3;
+      time += 4;
     } else {
-      time += 5;
+      time += 7;
     }
 
     updateTime();
   }
 });
+
 
 // Settings btn click
 settingsBtn.addEventListener('click', () => {
