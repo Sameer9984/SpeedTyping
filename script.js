@@ -139,7 +139,9 @@ text.addEventListener('keypress', e => {
     updateScore();
 
     // Clear
-    e.target.value = '';
+    setTimeout(() => {
+      text.value = "";
+    }, 100);
 
     if (difficulty === 'hard') {
       time += 2;
