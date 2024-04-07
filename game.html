@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Speed Typer</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1 class="logo">Speed Typer</h1>
+        <button id="settings-btn" class="settings-btn" aria-label="Settings" aria-controls="settings">
+          <i class="fas fa-cog"></i>
+        </button>
+      </div>
+
+      <div id="settings" class="settings" role="dialog" aria-labelledby="settings-title" aria-modal="true" aria-hidden="true">
+        <h2 id="settings-title" class="settings-title">Settings</h2>
+        <form id="settings-form" class="settings-form">
+          <div>
+            <label for="difficulty" class="settings-label">Difficulty</label>
+            <select id="difficulty" aria-label="Difficulty" class="settings-select">
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+          <button type="button" id="confirm-settings" class="confirm-btn">Confirm</button>
+        </form>
+      </div>
+
+      <div class="game-container">
+        <div class="game-info">
+          <p class="time-container" aria-live="polite">Time left: <span id="time">10s</span></p>
+          <p class="score-container" aria-live="polite">Score: <span id="score">0</span></p>
+        </div>
+
+        <h2 class="prompt" aria-live="polite">Type the following:</h2>
+
+        <div class="word-container">
+          <h1 id="word" aria-live="polite"></h1>
+        </div>
+
+        <div class="input-container">
+          <input type="text" id="text" autocomplete="off" placeholder="Start typing..." autofocus aria-label="Word input" aria-describedby="word-description" class="input-field" />
+          <p id="word-description" class="visually-hidden">The word to type is displayed above</p>
+        </div>
+
+        <div id="end-game-container" class="end-game-container" role="dialog" aria-labelledby="end-game-title" aria-modal="true" aria-live="assertive"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

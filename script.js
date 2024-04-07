@@ -33,7 +33,7 @@ let randomWord;
 let score = 0;
 
 // Init time
-let time = 30;
+let time = 10;
 
 // Set difficulty to value in ls or medium
 let difficulty =
@@ -90,6 +90,9 @@ function gameOver() {
       <h2>Time's Up!</h2>
       <p>Your final score is ${score}</p>
       <button id="play-again-btn">Play Again</button>
+      <br><br>
+      <button id="quit-btn">Quit</button>
+      
     </div>
   `;
 
@@ -101,6 +104,10 @@ function gameOver() {
   const playAgainBtn = document.getElementById('play-again-btn');
   playAgainBtn.addEventListener('click', () => {
     location.reload();
+  });
+
+  const QuitGame = document.getElementById("quit-btn").addEventListener("click", function() {
+    window.location.href = "index.html"; // Replace 'anotherpage.html' with the URL of the HTML file you want to redirect to
   });
 }
 
