@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Leaderboard</h2>
+    <div id="leaderboard-container">
+      <p>Loading...</p>
+    </div>
+  </div>
+
+  <script>
+    const leaderboardContainer = document.getElementById('leaderboard-container');
+
+    // Fetch leaderboard data from the server
+    fetch('/api/leaderboard')
+      .then(response => response.json())
+      .then(data => {
+        const { date, leaderboard } = data;
+        leaderboardContainer.innerHTML = `
+          <h3>Leaderboard for ${date}</h3>
+          <ol>
+            ${leaderboard.map(entry => `<li>${entry.username} - ${entry.highScore}</li>`).join('')}
+          </ol>
+        `;
+      })
+      .catch(error => {
+        leaderboardContainer.innerHTML = `<p>Error loading leaderboard: ${error.message}</p>`;
+      });
+  </script>
+</body>
+</html>

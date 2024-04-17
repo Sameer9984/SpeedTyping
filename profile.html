@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+</head>
+<body>
+  <div class="container">
+    <h2>User Profile</h2>
+    <div id="profile-container">
+      <p>Loading...</p>
+    </div>
+    <button id="logout-btn">Logout</button>
+  </div>
+<!-- 
+  <script>
+    const profileContainer = document.getElementById('profile-container');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    // Fetch user profile data from the server
+    fetch('/api/profile')
+      .then(response => response.json())
+      .then(data => {
+        const { username, email, highScore } = data;
+        profileContainer.innerHTML = `
+          <p>Username: ${username}</p>
+          <p>Email: ${email}</p>
+          <p>High Score: ${highScore}</p>
+        `;
+      })
+      .catch(error => {
+        profileContainer.innerHTML = `<p>Error loading profile: ${error.message}</p>`;
+      });
+
+    // Logout functionality
+    logoutBtn.addEventListener('click', () => {
+      // Send logout request to the server
+      fetch('/api/logout', { method: 'POST' })
+        .then(() => {
+          // Redirect to the login page
+          window.location.href = '/login.html';
+        })
+        .catch(error => {
+          alert(`Error logging out: ${error.message}`);
+        });
+    });
+  </script> -->
+</body>
+</html>
