@@ -138,8 +138,8 @@
       <img src="logo.jpg" alt="Valorant Speed Typer">
     </div>
     <div class="nav-buttons">
-      <button>Profile</button>
-      <button>Leaderboard</button>
+      <button class="profile" id="profile">Profile</button>
+      <button class="leaderboard" id="leaderboard">Leaderboard</button>
     </div>
   </header>
 
@@ -159,6 +159,12 @@
   <script>
     document.getElementById("redirectButton").addEventListener("click", function() {
       window.location.href = "game.html"; // Replace 'anotherpage.html' with the URL of the HTML file you want to redirect to
+    });
+    document.getElementById("profile").addEventListener("click", function() {
+      window.location.href = "profile.html"; // Replace 'anotherpage.html' with the URL of the HTML file you want to redirect to
+    });
+    document.getElementById("leaderboard").addEventListener("click", function() {
+      window.location.href = "leaderboard.html"; // Replace 'anotherpage.html' with the URL of the HTML file you want to redirect to
     });
     </script>
 </body>
