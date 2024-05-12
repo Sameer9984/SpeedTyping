@@ -4,14 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Valorant Speed Typer</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Oxanide:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     /* Valorant-inspired styling */
     body {
-      font-family: 'Oxanide', cursive;
+      /* font-family: 'Oxanide', cursive; */
       background: radial-gradient(circle, #d92e37, #4a0f11);
       color: #fff;
       margin: 0;
@@ -19,6 +21,9 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      font-family: "Amatic SC", sans-serif;
+      font-weight: 400;
+      font-style: normal;
     }
 
     header {
@@ -26,7 +31,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      background-color: rgba(0, 0, 0, 0.7);
+      /* background-color: rgba(0, 0, 0, 0.7); */
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
 
@@ -52,17 +57,20 @@
     .container {
       max-width: 800px;
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
+      /* background-color: rgba(0, 0, 0, 0.7); */
       border-radius: 8px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      padding: 2rem;
+      padding: 0rem;
       text-align: center;
       margin: 2rem auto;
       flex: 1;
     }
 
     h1 {
-      font-size: 3rem;
+      font-family: "Jersey 15", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 5rem;
       text-transform: uppercase;
       letter-spacing: 2px;
       margin-bottom: 20px;
@@ -99,7 +107,7 @@
     }
 
     .instructions {
-      background-color: rgba(0, 0, 0, 0.8);
+      /* background-color: rgba(0, 0, 0, 0.8); */
       border-radius: 8px;
       padding: 2rem;
       margin-bottom: 2rem;
@@ -163,6 +171,9 @@
         z-index: -2;
         transform: translateX(-51%) translateY(-51%);
       }
+  
+
+      
   </style>
 </head>
 <body>
@@ -179,14 +190,15 @@
   <div class="container">
     <div class="instructions">
       <h2>How to Play</h2>
-      <p>In Valorant Speed Typer, you'll race against the clock to type as many words as possible.</p>
+      <p>
+        In ITypeSpeed Web Game, you'll race against the clock to type as many words as possible.</p>
       <p>The game will display a random word, and you'll need to type it accurately before the time runs out.</p>
       <p>Earn points for each word you type correctly, and try to beat your previous high score!</p>
       <p>You can choose from three difficulty levels: Easy, Medium, and Hard. The higher the difficulty, the less time you'll get for each correct word typed.</p>
       <p>On the Easy level, you'll get 7 seconds added for each correct word. On Medium, you'll get 4 seconds added. And on Hard, you'll get 2 seconds added.</p>
     </div>
-    <h1>Valorant Speed Typer</h1>
-    <p>Test your typing skills in this adrenaline-pumping speed typing game inspired by the Valorant universe.</p>
+    <h1>ITypeSpeed</h1>
+    <p>Test your typing skills in this adrenaline-pumping speed typing game.<br> Are you ready to type your way to victory? Let's play Valorant Speed Typer and see how fast you truly are</p>
     <button class="play-btn" id="redirectButton"><i class="fas fa-keyboard"></i> Play</button>
   </div>
   <script>
